@@ -50,6 +50,18 @@ class Lazor:
         self.C = dataset1['C']
         self.dataset2 = dataset2
 
+    def __call__(self):
+        '''
+        The __call__ method will return the right combination
+        of coordinates of different blocks
+
+        **Input Parameters**
+            None
+        **Returns**
+            sel_comb: *dict, list, int*
+                The right combination of coordinates of different blocks
+        '''
+
     def set_abc(self, block_positions, name):
         '''
         This function will create a new dictionary with A, B, C
