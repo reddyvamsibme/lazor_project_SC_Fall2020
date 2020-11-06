@@ -578,7 +578,7 @@ class Solution:
         else:
             mov_pos = (x + vx, y - vy, vx, - vy)
             self.move_lazor(mov_pos)
-            
+
     def conditional(self, upd_pos, lazer):
         '''
         This function test will block (A, B or C) the lazer encounters
@@ -611,6 +611,7 @@ class Solution:
                 self.move_lazor(l_upd)
         else:
             return None
+
 
 class Visualisation:
     '''
@@ -760,6 +761,8 @@ class Visualisation:
             3: (119, 136, 170),
             4: (89, 62, 49),
         }
+
+
 if __name__ == "__main__":
     filename = "mad_7.bff"
     file = Input(filename)
@@ -768,4 +771,4 @@ if __name__ == "__main__":
     sel_comb = comb()
     result = Visualisation(filename, dataset2, sel_comb)
     result()
-
+    # filename = ["yarn_5.bff", "tiny_5.bff", "showstopper_4.bff", "numbered_6.bff","mad_1.bff","mad_7.bff", "mad_4.bff", "dark_1.bff"]
