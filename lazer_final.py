@@ -162,7 +162,9 @@ class Input:
                      "x_l": grid_update[1],
                      "A_l": grid_update[2],
                      "B_l": grid_update[3],
-                     "C_l": grid_update[4]})
+                     "C_l": grid_update[4],
+                     'Lazers': lazers,
+                     'Points': points})
 
         # closing the  .bff file
         file.close()
@@ -649,6 +651,9 @@ class Visualisation:
         self.filename = filename
         self.info = info
         self.sel_comb = sel_comb
+        self.lazers = info["Lazers"]
+        self.points = info["Points"]
+
 
     def __call__(self):
         '''
@@ -738,6 +743,21 @@ class Visualisation:
             draw.line(line, fill=(0, 0, 0, 255))
             line = ((dims1 - 1, y_start), (dims1 - 1, y_end))
             draw.line(line, fill=(0, 0, 0, 255))
+
+            # Creating Lazers and POIs
+            for i in self.lazers:
+                xp = i[0] * step_size1
+                yp = (size[1] - i[1]) * step_size2
+                shape = [(xp - 5, yp - 5), (xp + 5, yp + 5)]
+                img1 = ImageDraw.Draw(img)
+                img1.ellipse(shape, fill=(255, 0, 0, 255))
+
+            for i in self.points:
+                xp = i[0] * step_size1
+                yp = (size[1] - i[1]) * step_size2
+                shape = [(xp - 10, yp - 10), (xp + 10, yp + 10)]
+                img1 = ImageDraw.Draw(img)
+                img1.ellipse(shape, fill=(0, 0, 0, 255))
 
             # Removing the draw tool
             del draw
