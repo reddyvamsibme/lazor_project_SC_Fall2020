@@ -497,3 +497,30 @@ class Solution:
 
         # True if within the range
         return x >= 0 and x < xu and y >= 0 and y < yu
+        
+    def move_lazor(self, lazer):
+        '''
+        This function represents the movement of lazor along its direction
+
+        **Input Parameters**
+            lazer: *list, int*
+                The list with lazor position and direction
+        **Returns**
+            None
+        '''
+        self.x, self.y, self.vx, self.vy = lazer
+        pos = [self.x, self.y]
+        # If lazer position interesects one of POIs, remove the POI from list
+        self.points = list(filter(lambda x: x != pos, self.points))
+        # If direction of x-comp is negative and x-coordinate is a whole number
+        if self.x.is_integer() and self.vx < 0:
+            self.conditional((self.x - 1, (self.y * 2 - 1) / 2), lazer)
+        # If direction of x-comp is positive and x-coordinate is a whole number
+        elif self.x.is_integer() and self.vx > 0:
+            self.conditional((self.x, (self.y * 2 - 1) / 2), lazer)
+        # If direction of y-comp is negative and y-coordinate is a whole number
+        elif not self.x.is_integer() and self.vy < 0:
+            self.conditional(((self.x * 2 - 1) / 2, self.y - 1), lazer)
+        # If direction of y-comp is positive and y-coordinate is a whole number
+        else:
+            self.conditional(((self.x * 2 - 1) / 2, self.y), lazer)
