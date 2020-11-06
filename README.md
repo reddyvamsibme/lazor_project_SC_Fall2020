@@ -34,7 +34,7 @@ a different extension, you need to make the following adjustments
       + Lazor position and direction
       + Number of movable blocks (A,B,C)
     
-## Installation
+## Installation & Execution
 1. Clone this repository
     ```bash
     git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
