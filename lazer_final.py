@@ -726,7 +726,7 @@ class Visualisation:
         line = ((dims1 - 1, y_start), (dims1 - 1, y_end))
         draw.line(line, fill=(0, 0, 0, 255))
 
-        # Removing the draw tool
+        # Removing the draw tools
         del draw
         # Saving the file
         if ".bff" in self.filename:
