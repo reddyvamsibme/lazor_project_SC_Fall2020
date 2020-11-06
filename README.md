@@ -1,13 +1,23 @@
 ### Lazor Group Project
 **Authors: Vamsi Reddy, Emad Mohammed Naveed**  
 **Course: EN.540.635 “Software Carpentry”**  
-**WSE, Johns Hopkins University**
+**Johns Hopkins University, MD**
 
-<p style='text-align: justify;'> This repository has the python code and test files that will automatically find solutions to the “Lazors” game on Android and iPhone
+<p style='text-align: justify;'> This repository has the python code and test files that will automatically find solutions to the “Lazors” game on Android and iPhone. 
+The code is documented and designed to be easy to extend. If you use it in your research, please consider citing this repository.
 </p>
 
-The code is documented and designed to be easy to extend. If you use it in your research, please consider citing this repository.
-
+## Testfiles
+The code is exclusively programmed for reading '.bff' files as input and extracting the necessary information. 
+The directory [testfiles](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/tree/master/testfiles/)) in this repository has 7 '.bff' files for getting trained. If you intend to use your own test file with
+different extension, you need to make the following adjustments</p>
+   1. Comment the following code in __call__() of Class Input
+    ```bash
+    # If the file extension is not .bff file
+        if not self.filename.lower().endswith('.bff'):
+            raise SystemExit("Invalid File type, try with .bff files")
+    ```
+    
 ## Installation
 1. Clone this repository
     ```bash
@@ -23,7 +33,7 @@ The code is documented and designed to be easy to extend. If you use it in your 
     ```bash
     python3 lazor_final.py
     ``` 
-5. Redirect to the root folder and check the saved .png files
+5. Redirect to the root folder and check the saved .png files for solutions
 
 ## Blocks and positions on lazor grid
 * x = No block allowed
@@ -32,7 +42,7 @@ The code is documented and designed to be easy to extend. If you use it in your 
 * B = Fixed opaque block
 * C = Fixed refract block
 
-**Color Scheme - Solution**
+## Color Scheme - Solution
 ![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color.png "Colors for specific blocks and positions")
 
 ## Code Architecture
