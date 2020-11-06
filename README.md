@@ -19,6 +19,7 @@ The code is documented in PEP8 style formatting with clear comments and designed
 
 ## Color Scheme - Solution
 ![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color.png "Colors for specific blocks and positions")
+![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color2.png "Colors for specific blocks and positions")
 
 ## Testfiles
 The code is exclusively programmed for reading '.bff' files as input and extracting the necessary information. 
