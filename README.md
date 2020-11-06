@@ -9,14 +9,15 @@ The code is documented and designed to be easy to extend. If you use it in your 
 
 ## Testfiles
 The code is exclusively programmed for reading '.bff' files as input and extracting the necessary information. 
-The directory [testfiles](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/tree/master/testfiles/)) in this repository has 7 '.bff' files for getting trained. If you intend to use your own test file with
-different extension, you need to make the following adjustments</p>
-   1. Comment the following code in __call__() of Class Input
-    ```bash
-    # If the file extension is not .bff file
-        if not self.filename.lower().endswith('.bff'):
+The directory [testfiles](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/tree/master/testfiles/) 
+in this repository has 7 '.bff' files for getting trained. If you intend to use your own test file with
+different extension, you need to make the following adjustments
+   1. Comment the following code in __call__() of Class Input:  
+   ```python
+        # If the file extension is not .bff file
+         if not self.filename.lower().endswith('.bff'):
             raise SystemExit("Invalid File type, try with .bff files")
-    ```
+   ```
     
 ## Installation
 1. Clone this repository
