@@ -49,3 +49,14 @@ class Lazor:
         self.B = dataset1['B']
         self.C = dataset1['C']
         self.dataset2 = dataset2
+
+    def set_abc(self, block_positions, name):
+        
+        sel_comb = {}
+        for j in range(len(block_positions)):
+            # Accessing each position
+            block_position = block_positions[j]
+            for i in block_position:
+                # Creating a key, value pair
+                sel_comb[(i[0], i[1])] = name[j]
+        return sel_comb
