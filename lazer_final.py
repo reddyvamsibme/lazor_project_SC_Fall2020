@@ -579,6 +579,39 @@ class Solution:
             mov_pos = (x + vx, y - vy, vx, - vy)
             self.move_lazor(mov_pos)
             
+    def conditional(self, upd_pos, lazer):
+        '''
+        This function test will block (A, B or C) the lazer encounters
+
+        **Input Parameters**
+            upd_pos: *tuple, float, optional*
+                The updated position in lazer direction
+        **Returns**
+            None: *None-type*
+                If lazor position is outside the grid
+                or if it encounters Block B
+        '''
+        # If lazor position is within the grid
+        if self.pos_chk(upd_pos):
+            #  If lazor position found amongst the selected combination
+            if upd_pos in self.sel_comb:
+                # Get the name of the blocl
+                name = self.sel_comb[upd_pos]
+                # Run reflect() function
+                if name == 'A':
+                    self.reflect(lazer)
+                # Run refract() function
+                elif name == 'C':
+                    self.refract(lazer)
+                # If Block B, return
+                else:
+                    return None
+            else:
+                l_upd = (self.x + self.vx, self.y + self.vy, self.vx, self.vy)
+                self.move_lazor(l_upd)
+        else:
+            return None
+
 class Visualisation:
     '''
         This class defines various operations for plotting
