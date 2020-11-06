@@ -770,6 +770,7 @@ if __name__ == "__main__":
     # For loop for to run all the files at once
     for item in filename
         # filename = "mad_7.bff"
+        # initializing times
         t0 = time.time()
         file = Input(item)
         dataset1, dataset2 = file()
@@ -777,7 +778,10 @@ if __name__ == "__main__":
         sel_comb = comb()
         result = Visualisation(filename, dataset2, sel_comb)
         result()
+        # Time for each case
         t1 = time.time()
         time1 = t1 - t0
         times.append(time1)
+    # crosschecking time 
+    print(times)
 
