@@ -473,3 +473,27 @@ class Solution:
         if self.points == []:
             return True
         return False
+
+    def pos_chk(self, upd_pos):
+        '''
+        This function will check if the position is
+        within the range of the grid
+
+        **Input Parameters**
+            upd_pos: *list, int*
+                The list with x, y coordinates or positions
+        **Returns**
+            True/False: *bool*
+                True if coordinates is within the range
+        '''
+        # Initializing x boundaries
+        x = upd_pos[0]
+        # Max x-position
+        xu = self.size[0]
+        # Initializing y boundaries
+        y = upd_pos[1]
+        # Max y-position
+        yu = self.size[1]
+
+        # True if within the range
+        return x >= 0 and x < xu and y >= 0 and y < yu
