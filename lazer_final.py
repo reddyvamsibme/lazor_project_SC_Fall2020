@@ -51,7 +51,19 @@ class Lazor:
         self.dataset2 = dataset2
 
     def set_abc(self, block_positions, name):
-        
+        '''
+        This function will create a new dictionary with A, B, C
+        combinations
+
+        **Input Parameters**
+            block_positions: *list, int*
+                The list with positions of a specific block
+            name: *list, int*
+                The name of the specific block
+        **Returns**
+            sel_comb: *dict, list, int*
+                An updated dictionary with A, B, C combinations
+        '''
         sel_comb = {}
         for j in range(len(block_positions)):
             # Accessing each position
