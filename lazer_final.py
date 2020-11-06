@@ -760,3 +760,12 @@ class Visualisation:
             3: (119, 136, 170),
             4: (89, 62, 49),
         }
+if __name__ == "__main__":
+    filename = "mad_7.bff"
+    file = Input(filename)
+    dataset1, dataset2 = file()
+    comb = Lazor(dataset1, dataset2)
+    sel_comb = comb()
+    result = Visualisation(filename, dataset2, sel_comb)
+    result()
+
