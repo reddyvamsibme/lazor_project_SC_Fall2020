@@ -9,7 +9,33 @@ Emad Mohammed Naveed <enaveed1@jhu.edu>
 from itertools import combinations
 from PIL import Image, ImageDraw
 
+class Input:
+    '''
+    This class handles reading and extraction of lazor test file information
+    Step 1: Read the .bff extension files only.
+    Step 2: Extract specific information about different blocks and positions
+            [positions of (o, x), flexible and fixed blocks (A,B,C)]
+    Step 3: Extract lazer positions, directions & points of intersections(POI)
+    Step 4: Transformation of coordinates of lazors and POIs
+    '''
 
+    def __init__(self, file):
+        '''
+            The __init__ method will initialize the object’s state.
+            Initializes the function of the class when
+            an object of class is created.
+            In this case, the file name of the lazor test file
+            **Input Parameters**
+                file: *str*
+                    The filename to read and extract information
+                    The filename to save the output image with solution
+            **Returns**
+                None
+        '''
+        self.filename = file
+        # Initializing position variables
+        self.x = 0
+        self.y = 0
 
 
 class Lazor:
