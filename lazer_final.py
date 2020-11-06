@@ -358,6 +358,16 @@ class Lazor:
                 except BaseException:
                     pass
         return o_l, vars()[list_name]
+    
+    def rearrange(self, block_list, o_l, number, extend_list, alphabet):
+
+        # When there are specific blocks
+        if number != 0:
+            del block_list[-number:]
+            # Updating o positions list
+            if alphabet != "C":
+                o_l.extend(extend_list)
+        return o_l, block_list
 
 class Solution:
     '''
