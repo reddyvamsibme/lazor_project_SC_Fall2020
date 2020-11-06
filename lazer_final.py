@@ -740,11 +740,11 @@ class Visualisation:
     def get_colors(self):
         '''
         Colors map that the maze will use:
-            0: Light Brown     - 'o' positions
-            1: Light Gray      - 'A' positions
-            2: Dark Gray       - 'B' positions
-            3: Bermuda Gray    - 'C' positions
-            4: Dark Brown      - 'x' positions
+                0: Light Brown     - 'o' positions
+                1: Light Gray      - 'A' positions
+                2: Dark Gray       - 'B' positions
+                3: Bermuda Gray    - 'C' positions
+                4: Dark Brown      - 'x' positions
 
         **Input Parameters**
             None
@@ -782,6 +782,6 @@ if __name__ == "__main__":
         t1 = time.time()
         time1 = t1 - t0
         times.append(time1)
-    # crosschecking time 
+    # crosschecking time
     print(times)
 
