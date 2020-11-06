@@ -574,6 +574,7 @@ class Solution:
         # If x-coordinate is a whole number
         if self.x.is_integer():
             mov_pos = (x - vx, y + vy, - vx, vy)
-
+            self.move_lazor(mov_pos)
         else:
             mov_pos = (x + vx, y - vy, vx, - vy)
+            self.move_lazor(mov_pos)
