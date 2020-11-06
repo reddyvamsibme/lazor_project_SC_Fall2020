@@ -360,7 +360,30 @@ class Lazor:
         return o_l, vars()[list_name]
     
     def rearrange(self, block_list, o_l, number, extend_list, alphabet):
+        '''
+        This function will rearrange the o_list and specific block list
+        by removing newly added positions. This new list will be used for
+        next iteration to find the right combination
 
+        **Input Parameters**
+            block_list: *list, int*
+                The list of specific block combinations with available
+                'o' positions
+            o_l: *list, int*
+                The 'o' positions list
+            number: *int*
+                The number of specific blocks for every iteration
+            extend_list: *list, int*
+                The positions of the block (A, B, C) from all combinations
+            alphabet: *str*
+                The name for the specific function
+
+        **Returns**
+            o_l: *list, int*
+                The updated o positions list
+            block_list: *list, int*
+                The updated list of specific block combinations
+        '''
         # When there are specific blocks
         if number != 0:
             del block_list[-number:]
