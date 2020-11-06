@@ -326,7 +326,21 @@ class Lazor:
                 # Creating a key, value pair
                 sel_comb[(i[0], i[1])] = name[j]
         return sel_comb
-
+    def new_sort(self, list_name, o_l, list_elements):
+        
+        # Creating a list with the variable name
+        vars()[list_name] = []
+        # extending the list with specific block positions
+        (vars()[list_name]).extend(list_elements)
+        # For A, B blocks
+        if not list_name == 'c_comb':
+            for item in list_elements:
+                # Try and except for removing elements
+                try:
+                    o_l.remove(item)
+                except BaseException:
+                    pass
+        return o_l, vars()[list_name]
 
 class Solution:
     '''
