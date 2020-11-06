@@ -4,21 +4,35 @@
 **Johns Hopkins University, MD**
 
 <p style='text-align: justify;'> This repository has the python code and test files that will automatically find solutions to the “Lazors” game on Android and iPhone. 
-A valid solution, if exists, for each file will be saved as an image with grid of different colored blocks (ref color scheme below).
-The code is documented in PEP8 style formatting with lucid comments and designed to be easy to extend. If you use it in your research, please consider citing this repository.
+A valid solution, if exists, for each file will be saved as an '.png' image with a grid of different colored blocks (ref color scheme below).
+The code is documented in PEP8 style formatting with clear comments and designed to be easy to extend. If you use it in your research, please consider citing this repository.
 </p>
+
+## Blocks and positions on lazor grid
+* x = No block allowed
+* o = Blocks allowed
+* A = Fixed reflect block
+* B = Fixed opaque block
+* C = Fixed refract block
+
+## Color Scheme - Solution
+![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color.png "Colors for specific blocks and positions")
 
 ## Testfiles
 The code is exclusively programmed for reading '.bff' files as input and extracting the necessary information. 
 The directory [testfiles](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/tree/master/testfiles/) 
-in this repository has 7 '.bff' files for getting trained. If you intend to use your own test file with
-different extension, you need to make the following adjustments
+in this repository has seven '.bff' files for getting trained. If you intend to use your own test file with
+a different extension, you need to make the following adjustments
    1. Comment the following code in call() method of Class Input:
    ```python
         # If the file extension is not .bff file
          if not self.filename.lower().endswith('.bff'):
             raise SystemExit("Invalid File type, try with .bff files")
    ```
+   2. Code to read the lines in the specific file type and extract the following information  
+      + Points of intersection, 'o' , 'x' and fixed blocks positions
+      + Lazor position and direction
+      + Number of movable blocks (A,B,C)
     
 ## Installation
 1. Clone this repository
@@ -36,16 +50,6 @@ different extension, you need to make the following adjustments
     python3 lazor_final.py
     ``` 
 5. Redirect to the root folder and check the saved .png files for solutions
-
-## Blocks and positions on lazor grid
-* x = No block allowed
-* o = Blocks allowed
-* A = Fixed reflect block
-* B = Fixed opaque block
-* C = Fixed refract block
-
-## Color Scheme - Solution
-![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color.png "Colors for specific blocks and positions")
 
 ## Code Architecture
 
