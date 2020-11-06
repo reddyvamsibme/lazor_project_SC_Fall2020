@@ -327,7 +327,24 @@ class Lazor:
                 sel_comb[(i[0], i[1])] = name[j]
         return sel_comb
     def new_sort(self, list_name, o_l, list_elements):
-        
+        '''
+        This function will update 'o' positions list
+        after every iteration in the combinations loop
+
+        **Input Parameters**
+            list_name: *str*
+                The name of the specific block
+            o_l: *list, int*
+                The 'o' positions list
+            list_elements: *list, int*
+                The specific block positions (A, B, or C)
+
+        **Returns**
+            o_l: *list, int*
+                The 'o' positions list
+            vars()[list_name]: *variable name*
+                The name of the specific block
+        '''
         # Creating a list with the variable name
         vars()[list_name] = []
         # extending the list with specific block positions
