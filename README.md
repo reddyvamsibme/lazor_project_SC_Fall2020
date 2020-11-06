@@ -6,13 +6,13 @@
 <p style='text-align: justify;'> This repository has the python code and test files that will automatically find solutions to the “Lazors” game on Android and iPhone
 </p>
 
-The code is documented and designed to be easy to extend. If you use it in your research, please consider citing this repository (bibtex below).
-```bash
-git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
-```
+The code is documented and designed to be easy to extend. If you use it in your research, please consider citing this repository.
 
 ## Installation
 1. Clone this repository
+    ```bash
+    git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
+    ```
 2. Install dependencies
    ```bash
    pip3 install -r requirements.txt
@@ -32,6 +32,7 @@ git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
 * B = Fixed opaque block
 * C = Fixed refract block
 
+**Color Scheme - Solution**
 ![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color.png "Colors for specific blocks and positions")
 
 ## Code Architecture
@@ -50,13 +51,13 @@ git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
    + Step 2: With leftover o positions, do similar combination search
                 for B, C  
    + Step 3: Create possible combinations of A, B, C with available
-                'o' positions and locked blocks within the grid  
+                'o' positions and locked blocks (A, B, C)
 
 * **Class Solution**  
      This class has functions to solve the lazor puzzle
      + Criteria: Lazer intersection with given points 
      + Input: Possble combinations of blocks, lazors, points of intersection  
-     + Handles the functions for refract, reflect, hittin the block, moving lazor, position and lazor encounters
+     + Handles the functions for refract, reflect, hitting the block, moving lazor, position and lazor encounters
          
  * **Class Visulization**  
     This class defines various operations for plotting the final solution for a given lazor test case  
