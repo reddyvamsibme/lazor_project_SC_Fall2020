@@ -24,7 +24,23 @@ class Lazor:
     '''
 
     def __init__(self, dataset1, dataset2):
-        
+        '''
+        The __init__ method will utilize the dictionaries created from
+        class Input and initialize all the extracted information as variables
+
+        **Input Parameters**
+            dataset1: *dict*
+                The dictionary with following attributes
+                size of the grid, lazors, points of intersection,
+                and number of blocks (A, B, C)
+            dataset2: *dict*
+                The dictionary with following attributes
+                size of the grid, individual lists of blocks
+                and no-movement positions
+        **Returns**
+            None
+
+        '''
         self.o_l = dataset1['o_l']
         self.size = dataset1['Size']
         self.lazers = dataset1['Lazers']
