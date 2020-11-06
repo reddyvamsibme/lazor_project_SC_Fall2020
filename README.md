@@ -1,5 +1,5 @@
 # Lazor Group Project
-**Authors: Vamsi Reddy, Emad Mohammed Naveed**  
+**Authors: Vamsi Reddy (reddy17@jhu.edu), Emad Mohammed Naveed (enaveed1@jhu.edu)**  
 **Course: EN.540.635 “Software Carpentry”**  
 **Johns Hopkins University, MD**
 
