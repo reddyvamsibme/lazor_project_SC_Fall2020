@@ -689,3 +689,49 @@ class Visualisation:
         ERR_MSG = "Error, invalid grid value found!"
         assert all([a in colors.keys()
                     for row in figure for a in row]), ERR_MSG
+
+        # Initializing an image with grid dimensions
+        img = Image.new("RGBA", (dims1, dims2), color=0)
+
+        # Marking the blocks accordingly
+        for jx in range(nBlocks1):
+            for jy in range(nBlocks2):
+                x = jx * blockSize
+                y = jy * blockSize
+                for i in range(blockSize):
+                    for j in range(blockSize):
+                        img.putpixel((x + i, y + j), colors[figure[jy][jx]])
+
+        # Drawing grid lines to distinguish the output blocks
+        draw = ImageDraw.Draw(img)
+        step_size1 = int(dims1 / size[0])
+        step_size2 = int(dims2 / size[1])
+        y_start = 0
+        y_end = dims2
+
+        # Vertical Lines
+        for x in range(0, dims1, step_size1):
+            line = ((x, y_start), (x, y_end))
+            draw.line(line, fill=(0, 0, 0, 255))
+        x_start = 0
+        x_end = dims1
+
+        # Horizontal Lines
+        for y in range(0, dims2, step_size2):
+            line = ((x_start, y), (x_end, y))
+            draw.line(line, fill=(0, 0, 0, 255))
+        line = ((x_start, dims2 - 1), (x_end, dims2 - 1))
+        draw.line(line, fill=(0, 0, 0, 255))
+        line = ((dims1 - 1, y_start), (dims1 - 1, y_end))
+        draw.line(line, fill=(0, 0, 0, 255))
+
+        # Removing the draw tool
+        del draw
+        # Saving the file
+        if ".bff" in self.filename:
+            self.filename = self.filename.split(".bff")[0]
+
+        if not self.filename.endswith(".png"):
+            self.filename += ".png"
+        img.save("%s" % self.filename)
+        img.show()
