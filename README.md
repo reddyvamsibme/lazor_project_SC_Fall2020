@@ -29,7 +29,7 @@ a different extension, you need to make the following adjustments
          if not self.filename.lower().endswith('.bff'):
             raise SystemExit("Invalid File type, try with .bff files")
    ```
-   2. Code to read the lines in the specific file type and extract the following information  
+   2. Code to read the lines in the specific file type and extract the following information:  
       + Points of intersection, 'o' , 'x' and fixed blocks positions
       + Lazor position and direction
       + Number of movable blocks (A,B,C)
@@ -39,7 +39,7 @@ a different extension, you need to make the following adjustments
     ```bash
     git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
     ```
-2. Install dependencies
+2. Install dependencies (for firs-time users, optional)
    ```bash
    pip3 install -r requirements.txt
    ```
