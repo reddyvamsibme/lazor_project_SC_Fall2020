@@ -4,7 +4,8 @@
 **Johns Hopkins University, MD**
 
 <p style='text-align: justify;'> This repository has the python code and test files that will automatically find solutions to the “Lazors” game on Android and iPhone. 
-The code is documented and designed to be easy to extend. If you use it in your research, please consider citing this repository.
+A valid solution, if exists, for each file will be saved as an image with grid of different colored blocks (ref color scheme below).
+The code is documented in PEP8 style formatting with lucid comments and designed to be easy to extend. If you use it in your research, please consider citing this repository.
 </p>
 
 ## Testfiles
@@ -12,7 +13,7 @@ The code is exclusively programmed for reading '.bff' files as input and extract
 The directory [testfiles](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/tree/master/testfiles/) 
 in this repository has 7 '.bff' files for getting trained. If you intend to use your own test file with
 different extension, you need to make the following adjustments
-   1. Comment the following code in __call__() of Class Input:  
+   1. Comment the following code in call() method of Class Input:
    ```python
         # If the file extension is not .bff file
          if not self.filename.lower().endswith('.bff'):
