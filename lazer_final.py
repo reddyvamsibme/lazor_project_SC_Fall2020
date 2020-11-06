@@ -214,6 +214,50 @@ class Lazor:
             sel_comb: *dict, list, int*
                 The right combination of coordinates of different blocks
         '''
+        # All possible combinations of A in 'o' positions
+        o_lA = list(combinations(self.o_l, self.A))
+        # For every A block
+        for i_a in o_lA:
+            # Sorting the available 'o' positions, A combinations
+            o_l, a_comb = self.new_sort("a_comb", self.o_l, list(i_a))
+            # Possible combinations of B with new o positions
+            # (after A block is fixed)
+            o_lB = list(combinations(self.o_l, self.B))
+            # For every B block
+            for i_b in o_lB:
+                # Sorting the available 'o' positions, B combinations
+                o_l, b_comb = self.new_sort("b_comb", self.o_l, list(i_b))
+                # Possible combinations of C with new 'o' positions
+                # (after A, B blocks fixed)
+                o_lC = list(combinations(self.o_l, self.C))
+                # For every C block
+                for i_c in o_lC:
+                    # Sorting the available 'o' positions, C combinations
+                    o_l, c_comb = self.new_sort("c_comb", self.o_l, list(i_c))
+
+                    # Selecting a set of different coordinates amongst
+                    # all possible combinations
+                    sel_comb = self.set_abc(
+                        [a_comb, b_comb, c_comb], ['A', 'B', 'C'])
+
+                    # Testing the selected combination under class Solution
+                    test_comb = Solution(
+                        sel_comb,
+                        self.lazers,
+                        self.points,
+                        self.dataset2,
+                        self.size)
+
+                    # If true, return the right combination
+                    # of coordinates of different blocks
+                    if test_comb():
+                        return sel_comb
+                    # Else test the next possible combination
+                    o_l, c_comb = self.rearrange(
+                        c_comb, o_l, self.C, list(i_c), "C")
+                o_l, b_comb = self.rearrange(
+                    b_comb, o_l, self.B, list(i_b), "B")
+            o_l, a_comb = self.rearrange(a_comb, o_l, self.A, list(i_a), "A")
 
     def set_abc(self, block_positions, name):
         '''
