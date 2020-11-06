@@ -37,6 +37,40 @@ class Input:
         self.x = 0
         self.y = 0
 
+    def __call__(self):
+        '''
+        The __call__ method will read and extract the specific .bff file
+
+        **Input Parameters**
+            None
+        **Returns**
+            dataset1: *dict*
+                The dictionary with following attributes
+                size of the grid, lazors, points of intersection,
+                blocks (A, B, C)
+            dataset2: *dict*
+                The dictionary with following attributes
+                size of the grid, and individual lists of blocks
+                and no-movement positions
+        '''
+        # If the file extension is not .bff file
+        if not self.filename.lower().endswith('.bff'):
+            raise SystemExit("Invalid File type, try with .bff files")
+        # Initializing position variables and block list
+        A, B, C = 0, 0, 0
+        o_l, x_l, A_l, B_l, C_l, lazers, points = (
+            [] for i in range(7))
+
+        # Open the file with .bff extensions
+        file = open(self.filename, 'r')
+        # Read the information line by line
+        lines = file.read().splitlines()
+        # Defining the start and stop for extracting positions
+        try:
+            start = lines.index("GRID START")
+            stop = lines.index("GRID STOP")
+        except BaseException:
+            raise SystemExit("No grid start or stop indicated in test file")
 
 class Lazor:
     '''
