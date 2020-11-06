@@ -9,6 +9,7 @@ Emad Mohammed Naveed <enaveed1@jhu.edu>
 from itertools import combinations
 from PIL import Image, ImageDraw
 
+
 class Input:
     '''
     This class handles reading and extraction of lazor test file information
@@ -71,7 +72,8 @@ class Input:
             stop = lines.index("GRID STOP")
         except BaseException:
             raise SystemExit("No grid start or stop indicated in test file")
-            # Iterating through each line to extract grid
+
+        # Iterating through each line to extract grid
         for line in lines[start + 1: stop]:
             # split by tab/space
             pos = line.split()
@@ -165,7 +167,7 @@ class Input:
         file.close()
         return dataset1, dataset2
 
-        def grid_transformation(self, lists):
+    def grid_transformation(self, lists):
         '''
         This function will transform the y-coordinates
         of the given lists
@@ -210,12 +212,13 @@ class Input:
             pi[1] = self.y - pi[1] * 0.5
         return lazers, points
 
+
 class Lazor:
     '''
         This class estimates all possible combinations to find the solution
         Step 1: Sorting A blocks in possible 'o' positions to get all
                 combinations
-        Step 2: With leftover 'o' positions, do similar combination search
+        Step 2: With leftover o positions, do similar combination search
                 for B, C
         Step 3: Create possible combinations of A, B, C with available
                 'o' positions and locked blocks within the grid
@@ -250,7 +253,7 @@ class Lazor:
 
     def __call__(self):
         '''
-        The __call__ method will return the right combination
+        The __call__ method will return the right combination 
         of coordinates of different blocks
 
         **Input Parameters**
@@ -326,6 +329,7 @@ class Lazor:
                 # Creating a key, value pair
                 sel_comb[(i[0], i[1])] = name[j]
         return sel_comb
+
     def new_sort(self, list_name, o_l, list_elements):
         '''
         This function will update 'o' positions list
@@ -358,7 +362,7 @@ class Lazor:
                 except BaseException:
                     pass
         return o_l, vars()[list_name]
-    
+
     def rearrange(self, block_list, o_l, number, extend_list, alphabet):
         '''
         This function will rearrange the o_list and specific block list
@@ -391,6 +395,7 @@ class Lazor:
             if alphabet != "C":
                 o_l.extend(extend_list)
         return o_l, block_list
+
 
 class Solution:
     '''
@@ -435,3 +440,36 @@ class Solution:
         self.A_l = dataset2['A_l']
         self.B_l = dataset2['B_l']
         self.C_l = dataset2['C_l']
+
+    def __call__(self):
+        '''
+        The __call__ method will add fixed elements into the dictionary and
+        test if all POIs are intersected by the lazors
+
+        **Input Parameters**
+            None
+        **Returns**
+            True/False *bool*
+                True if list of points of intersection (POI) is empty
+        '''
+        # Incoporate coordinates of fixed A blocks
+        if self.A_l:
+            for i in self.A_l:
+                self.sel_comb[(i[0], i[1])] = 'A'
+        # Incoporate coordinates of fixed B blocks
+        if self.B_l:
+            for i in self.B_l:
+                self.sel_comb[(i[0], i[1])] = 'B'
+        # Incoporate coordinates of fixed C blocks
+        if self.C_l:
+            for i in self.C_l:
+                self.sel_comb[(i[0], i[1])] = 'C'
+        # Iterating over every lazer
+        for li in self.lazers:
+            # Run the function
+            self.move_lazor(li)
+
+        # if list of POI is empty
+        if self.points == []:
+            return True
+        return False
