@@ -766,13 +766,18 @@ class Visualisation:
 if __name__ == "__main__":
     filename = ["yarn_5.bff", "tiny_5.bff", "showstopper_4.bff", "numbered_6.bff", "mad_1.bff", "mad_7.bff",
                 "mad_4.bff", "dark_1.bff"]
+    times = []
     # For loop for to run all the files at once
     for item in filename
         # filename = "mad_7.bff"
+        t0 = time.time()
         file = Input(item)
         dataset1, dataset2 = file()
         comb = Lazor(dataset1, dataset2)
         sel_comb = comb()
         result = Visualisation(filename, dataset2, sel_comb)
         result()
+        t1 = time.time()
+        time1 = t1 - t0
+        times.append(time1)
 
