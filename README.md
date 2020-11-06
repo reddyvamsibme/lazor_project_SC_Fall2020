@@ -1,11 +1,7 @@
----
-layout: single
-classes: wide
----
-
-## Lazor Group Project
-**Authors: Vamsi Reddy, Emad Mohammed Naveed**
-**EN.540.635 “Software Carpentry”**
+### Lazor Group Project
+**Authors: Vamsi Reddy, Emad Mohammed Naveed**  
+**Course: EN.540.635 “Software Carpentry”**  
+**WSE, Johns Hopkins University**
 
 <p style='text-align: justify;'> This repository has the python code and test files that will automatically find solutions to the “Lazors” game on Android and iPhone
 </p>
@@ -29,11 +25,47 @@ git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
     ``` 
 5. Redirect to the root folder and check the saved .png files
 
-** Blocks and positions on lazor grid**
-x = no block allowed
-o = blocks allowed
-A = fixed reflect block
-B = fixed opaque block
-C = fixed refract block
+## Blocks and positions on lazor grid
+* x = No block allowed
+* o = Blocks allowed
+* A = Fixed reflect block
+* B = Fixed opaque block
+* C = Fixed refract block
 
 ![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color.png "Colors for specific blocks and positions")
+
+## Code Architecture
+
+* **Class Input**  
+   This class handles reading and extraction of lazor test file information  
+   + Step 1: Read the .bff extension files only.  
+   + Step 2: Extract specific information about different blocks and positions 
+   + Step 3: Extract lazer positions, directions & points of intersections(POI)  
+   + Step 4: Transformation of coordinates of lazors and POIs
+
+* **Class Lazor**  
+   This class estimates all possible combinations to find the solution  
+   + Step 1: Sorting A blocks in possible 'o' positions to get all
+                combinations  
+   + Step 2: With leftover o positions, do similar combination search
+                for B, C  
+   + Step 3: Create possible combinations of A, B, C with available
+                'o' positions and locked blocks within the grid  
+
+* **Class Solution**  
+     This class has functions to solve the lazor puzzle
+     + Criteria: Lazer intersection with given points 
+     + Input: Possble combinations of blocks, lazors, points of intersection  
+     + Handles the functions for refract, reflect, hittin the block, moving lazor, position and lazor encounters
+         
+ * **Class Visulization**  
+    This class defines various operations for plotting the final solution for a given lazor test case  
+    + Step 1: Creating a grid with blocks
+    + Step 2: Assigning the colors as per the above color scheme
+    + Step 3: Retracing the lazor path
+    + Step 4: Draw the grid lines and intersection points
+    + Step 5: Save the solution as .png file in the root file
+
+
+
+
