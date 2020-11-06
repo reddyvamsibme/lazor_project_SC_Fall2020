@@ -41,7 +41,7 @@ a different extension, you need to make the following adjustments
     ```bash
     git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
     ```
-2. Install dependencies (for first-time users, optional)
+2. Install dependencies (for first-time users, optional), install Python 3.7 or above.
    ```bash
    pip3 install -r requirements.txt
    ```
