@@ -253,7 +253,7 @@ class Lazor:
 
     def __call__(self):
         '''
-        The __call__ method will return the right combination 
+        The __call__ method will return the right combination
         of coordinates of different blocks
 
         **Input Parameters**
@@ -726,7 +726,7 @@ class Visualisation:
         line = ((dims1 - 1, y_start), (dims1 - 1, y_end))
         draw.line(line, fill=(0, 0, 0, 255))
 
-        # Removing the draw tools
+        # Removing the draw tool
         del draw
         # Saving the file
         if ".bff" in self.filename:
@@ -764,11 +764,15 @@ class Visualisation:
 
 
 if __name__ == "__main__":
-    filename = "mad_7.bff"
-    file = Input(filename)
-    dataset1, dataset2 = file()
-    comb = Lazor(dataset1, dataset2)
-    sel_comb = comb()
-    result = Visualisation(filename, dataset2, sel_comb)
-    result()
-    # filename = ["yarn_5.bff", "tiny_5.bff", "showstopper_4.bff", "numbered_6.bff","mad_1.bff","mad_7.bff", "mad_4.bff", "dark_1.bff"]
+    filename = ["yarn_5.bff", "tiny_5.bff", "showstopper_4.bff", "numbered_6.bff", "mad_1.bff", "mad_7.bff",
+                "mad_4.bff", "dark_1.bff"]
+    # For loop for to run all the files at once
+    for item in filename
+        # filename = "mad_7.bff"
+        file = Input(item)
+        dataset1, dataset2 = file()
+        comb = Lazor(dataset1, dataset2)
+        sel_comb = comb()
+        result = Visualisation(filename, dataset2, sel_comb)
+        result()
+
