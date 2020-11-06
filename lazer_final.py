@@ -165,6 +165,51 @@ class Input:
         file.close()
         return dataset1, dataset2
 
+        def grid_transformation(self, lists):
+        '''
+        This function will transform the y-coordinates
+        of the given lists
+
+        **Input Parameters**
+            lists: *list, int*
+                The list with specific positions [x,y]
+        **Returns**
+            lists: *list, int*
+                The updated grid system
+        '''
+        for listi in lists:
+            for listj in listi:
+                # Update y values
+                listj[1] = self.y - listj[1]
+        return lists
+
+    def position_transformation(self, lazers, points):
+        '''
+        This function will transform the POIs and directions
+        of the given lazors
+
+        **Input Parameters**
+            lazers: *lists*
+                The positions and directions of lazors
+            points: *lists*
+                The positions of points of intersection
+
+        **Returns**
+            lazers: *lists*
+                The updated positions and directions of lazors
+            points: *lists*
+                The updated positions of points of intersection
+        '''
+        for li in lazers:
+            li[0] = 0.5 * li[0]
+            li[1] = self.y - li[1] * 0.5
+            li[2] = 0.5 * li[2]
+            li[3] = - 0.5 * li[3]
+        for pi in points:
+            pi[0] = 0.5 * pi[0]
+            pi[1] = self.y - pi[1] * 0.5
+        return lazers, points
+
 class Lazor:
     '''
         This class estimates all possible combinations to find the solution
