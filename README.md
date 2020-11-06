@@ -14,6 +14,8 @@ The code is documented in PEP8 style formatting with clear comments and designed
 * A = Fixed reflect block
 * B = Fixed opaque block
 * C = Fixed refract block
+* P = Intersection points
+* L = Lazor
 
 ## Color Scheme - Solution
 ![alt text](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/blob/master/pics/color.png "Colors for specific blocks and positions")
@@ -71,7 +73,7 @@ a different extension, you need to make the following adjustments
 
 * **Class Solution**  
      This class has functions to solve the lazor puzzle
-     + Criteria: Lazer intersection with given points 
+     + Solving Criteria: Lazer should intersect with given points 
      + Input: Possble combinations of blocks, lazors, points of intersection  
      + Handles the functions for refract, reflect, hitting the block, moving lazor, position and lazor encounters
          
