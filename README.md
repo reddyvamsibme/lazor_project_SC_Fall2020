@@ -4,7 +4,7 @@
 **Johns Hopkins University, MD**
 
 <p style='text-align: justify;'> This repository has the python code and test files that will automatically find solutions to the “Lazors” game on Android and iPhone. 
-A valid solution, if exists, for each file will be saved as an '.png' image with a grid of different colored blocks (ref color scheme below).
+A valid solution, if exists, for each file will be saved as an '.png' image with a grid of different colored blocks (refer color scheme below).
 The code is documented in PEP8 style formatting with clear comments and designed to be easy to extend. If you use it in your research, please consider citing this repository.
 </p>
 
@@ -32,7 +32,7 @@ a different extension, you need to make the following adjustments
             raise SystemExit("Invalid File type, try with .bff files")
    ```
    2. Code to read the lines in the specific file type and extract the following information:  
-      + Points of intersection, 'o' , 'x' and fixed blocks positions
+      + Points of intersection, 'o' , 'x' and fixed blocks positions (A, B, C)
       + Lazor position and direction
       + Number of movable blocks (A,B,C)
     
@@ -41,7 +41,7 @@ a different extension, you need to make the following adjustments
     ```bash
     git clone https://github.com/reddyvamsibme/lazor_project_SC_Fall2020.git
     ```
-2. Install dependencies (for firs-time users, optional)
+2. Install dependencies (for first-time users, optional)
    ```bash
    pip3 install -r requirements.txt
    ```
@@ -66,7 +66,7 @@ a different extension, you need to make the following adjustments
    This class estimates all possible combinations to find the solution  
    + Step 1: Sorting A blocks in possible 'o' positions to get all
                 combinations  
-   + Step 2: With leftover o positions, do similar combination search
+   + Step 2: With leftover 'o' positions, do similar combination search
                 for B, C  
    + Step 3: Create possible combinations of A, B, C with available
                 'o' positions and locked blocks (A, B, C)
@@ -82,7 +82,7 @@ a different extension, you need to make the following adjustments
     + Step 1: Creating a grid with blocks
     + Step 2: Assigning the colors as per the above color scheme
     + Step 3: Retracing the lazor path
-    + Step 4: Draw the grid lines and intersection points
+    + Step 4: Draw the grid lines, intersection points and lazer points
     + Step 5: Save the solution as .png file in the root file
 
 
