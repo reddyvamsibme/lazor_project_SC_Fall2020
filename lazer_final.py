@@ -326,3 +326,48 @@ class Lazor:
                 # Creating a key, value pair
                 sel_comb[(i[0], i[1])] = name[j]
         return sel_comb
+
+
+class Solution:
+    '''
+        This class has functions to solve the lazor puzzle based on
+        the generated combinations of blocks, lazors, points of intersection
+        Criteria: List of points of intersection is empty
+
+    '''
+
+    def __init__(self, sel_comb, lazers, points, dataset2, size):
+        '''
+
+        The __init__ method will initialize the previously generated dictionaries,
+        lazors' information, size of the grid etc.
+
+        **Input Parameters**
+            sel_comb: *dict*
+                The dictionary with following attributes
+                size of the grid, and blocks (A, B, C)
+            lazers: *list, int*
+                The list of lazor positions and directions
+            points: *list, int*
+                The list of positions of points of intersections
+            dataset2: *dict*
+                The dictionary with following attributes
+                size of the grid, and individual lists of blocks
+                (A,B.C) and no-movement positions
+            size:*list, int*
+                The size of the grid for the lazor
+        **Returns**
+            None
+
+        '''
+        self.size = size
+        self.sel_comb = sel_comb
+        self.lazers = lazers
+        self.points = points
+        self.x = 0
+        self.y = 0
+        self.vx = 0
+        self.vy = 0
+        self.A_l = dataset2['A_l']
+        self.B_l = dataset2['B_l']
+        self.C_l = dataset2['C_l']
