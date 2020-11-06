@@ -638,3 +638,54 @@ class Visualisation:
         self.filename = filename
         self.info = info
         self.sel_comb = sel_comb
+
+    def __call__(self):
+        '''
+        The __call__ method will plot the lazor solution in a grid
+        and save it as .png file
+
+        **Input Parameters**
+            None
+        **Returns**
+            None
+        '''
+        # Intializing the grid size
+
+        size = self.info['Size']
+        x_l = self.info['x_l']
+        blockSize = 100
+        # Grid dimensions
+        nBlocks1 = size[0]
+        nBlocks2 = size[1]
+        # Creating the grid
+        figure = [[0 for i in range(nBlocks1)] for j in range(nBlocks2)]
+        dims1 = nBlocks1 * blockSize
+        dims2 = nBlocks2 * blockSize
+        # Storing the defined colors
+        colors = self.get_colors()
+
+        # For a given solution, plotting specific color blocks
+        for i in self.sel_comb:
+            name = self.sel_comb[i]
+            # Transforming the coordinate system
+            x = int(i[0])
+            y = int(size[1] - i[1] - 1)
+            if name == 'A':
+                figure[y][x] = 1
+            elif name == 'B':
+                figure[y][x] = 2
+            elif name == 'C':
+                figure[y][x] = 3
+            else:
+                figure[y][x] = 0
+
+        # Highlighting 'x' positions
+        for i in x_l:
+            x = int(i[0])
+            y = int(size[1] - i[1] - 1)
+            figure[y][x] = 4
+
+        # Error if out of bounds
+        ERR_MSG = "Error, invalid grid value found!"
+        assert all([a in colors.keys()
+                    for row in figure for a in row]), ERR_MSG
