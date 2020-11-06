@@ -578,3 +578,8 @@ class Solution:
         else:
             mov_pos = (x + vx, y - vy, vx, - vy)
             self.move_lazor(mov_pos)
+            
+class Visualisation:
+    '''
+        This class defines various operations for plotting
+        the final solution for a given lazor test case
