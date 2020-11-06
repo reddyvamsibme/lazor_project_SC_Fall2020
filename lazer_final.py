@@ -616,3 +616,25 @@ class Visualisation:
     '''
         This class defines various operations for plotting
         the final solution for a given lazor test case
+    '''
+
+    def __init__(self, filename, info, sel_comb):
+        '''
+        The __init__ method will initialize the filename, block info
+        and the dictionary with A, B, C combinations
+
+        **Input Parameters**
+            file: *str*
+                The filename to save the output
+            info: **
+
+            sel_comb: *dict, list, int*
+                An updated dictionary with A, B, C combinations
+
+        **Returns**
+            None
+
+        '''
+        self.filename = filename
+        self.info = info
+        self.sel_comb = sel_comb
