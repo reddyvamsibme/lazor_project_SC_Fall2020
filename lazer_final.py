@@ -547,3 +547,33 @@ class Solution:
             self.move_lazor((x - vx, y + vy, - vx, vy))
         else:
             self.move_lazor((x + vx, y - vy, vx, - vy))
+
+    def refract(self, lazer):
+        '''
+        This function is executed if it encounters the C block
+        This function will encrypt any string
+        Reflect section
+        Step 1: Check lazor direction
+        Step 2: Verify the touch (Lazor - block)
+        Step 3: If touch is on sides or top or bottom
+
+        Refract section
+        Step 4: Run the move_lazor() function
+
+        **Input Parameters**
+            parameter: *int, float, optional*
+                The parameter that adds itself to the previous term
+        **Returns**
+            None
+        '''
+        x, y, vx, vy = lazer
+        up_x = x + vx
+        up_y = y + vy
+        mov_pos = (up_x, up_y, vx, vy)
+        self.move_lazor(mov_pos)
+        # If x-coordinate is a whole number
+        if self.x.is_integer():
+            mov_pos = (x - vx, y + vy, - vx, vy)
+
+        else:
+            mov_pos = (x + vx, y - vy, vx, - vy)
