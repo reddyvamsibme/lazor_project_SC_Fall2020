@@ -71,6 +71,99 @@ class Input:
             stop = lines.index("GRID STOP")
         except BaseException:
             raise SystemExit("No grid start or stop indicated in test file")
+            # Iterating through each line to extract grid
+        for line in lines[start + 1: stop]:
+            # split by tab/space
+            pos = line.split()
+            # Within the grid
+            # Position information appends to each list based
+            # on the alphabet matching
+            for i in range(0, len(pos)):
+                if pos[i] == 'o':
+                    o_l.append([i, self.y + 1])
+                elif pos[i] == 'x':
+                    x_l.append([i, self.y + 1])
+                elif pos[i] == 'A':
+                    A_l.append([i, self.y + 1])
+                elif pos[i] == 'B':
+                    B_l.append([i, self.y + 1])
+                elif pos[i] == 'C':
+                    C_l.append([i, self.y + 1])
+                else:
+                    continue
+            self.y += 1
+        self.x = i + 1
+
+        # If no positions 'o' in the grid
+        if len(o_l) == 0:
+            raise SystemExit("No open positions to move the block")
+
+        # Initalizing the grid
+        grid = [o_l, x_l, A_l, B_l, C_l]
+        # transforming the grid positions [x,y]
+        grid_update = self.grid_transformation(grid)
+
+        # After the grid
+        for inputs in lines[stop + 1:]:
+            # In case of lines with comments or empty line
+            if inputs == "" or inputs[0] == '#':
+                continue
+            # Number of blocks
+            else:
+                # split by tab/space
+                pos = inputs.split()
+                if inputs[0] == 'A':
+                    A = int(pos[-1])
+                elif inputs[0] == 'B':
+                    B = int(pos[-1])
+                elif inputs[0] == 'C':
+                    C = int(pos[-1])
+                # Lazor positions and directions
+                elif inputs[0] == 'L':
+                    # Executes only if both the positions and
+                    # direction of lazors is specified
+                    try:
+                        lazers.append([int(pos[1]), int(pos[2]),
+                                       int(pos[3]), int(pos[4])])
+                    except BaseException:
+                        raise SystemExit(
+                            "Position or direction not specified for lazors")
+                # Points for Intersection
+                elif inputs[0] == 'P':
+                    try:
+                        points.append([int(pos[1]), int(pos[2])])
+                    except BaseException:
+                        raise SystemExit(
+                            "Invalid coordinates for intersection points")
+
+        # if there are no blocks to move
+        if A == 0 and B == 0 and C == 0:
+            raise SystemExit("No blocks available to solve the lazor")
+        # If no lazor info is provided
+        elif len(lazers) == 0:
+            raise SystemExit("No lazors info is provided in test file")
+
+        # Transformation the positions of given lazors
+        lazers, points = self.position_transformation(lazers, points)
+        # Creating dictionaries with extracted information
+        dataset1 = ({"Size": [self.x,
+                              self.y],
+                     "o_l": grid_update[0],
+                     'Lazers': lazers,
+                     'Points': points,
+                     "A": A,
+                     "B": B,
+                     "C": C})
+        dataset2 = ({"Size": [self.x,
+                              self.y],
+                     "x_l": grid_update[1],
+                     "A_l": grid_update[2],
+                     "B_l": grid_update[3],
+                     "C_l": grid_update[4]})
+
+        # closing the  .bff file
+        file.close()
+        return dataset1, dataset2
 
 class Lazor:
     '''
