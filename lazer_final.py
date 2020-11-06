@@ -735,3 +735,28 @@ class Visualisation:
             self.filename += ".png"
         img.save("%s" % self.filename)
         img.show()
+
+    def get_colors(self):
+        '''
+        Colors map that the maze will use:
+            0: Light Brown     - 'o' positions
+            1: Light Gray      - 'A' positions
+            2: Dark Gray       - 'B' positions
+            3: Bermuda Gray    - 'C' positions
+            4: Dark Brown      - 'x' positions
+
+        **Input Parameters**
+            None
+        **Returns**
+
+            color_map: *dict, int, tuple*
+                A dictionary that will correlate the integer key to
+                a color.
+        '''
+        return {
+            0: (221, 190, 144),
+            1: (220, 220, 220),
+            2: (80, 80, 80),
+            3: (119, 136, 170),
+            4: (89, 62, 49),
+        }
