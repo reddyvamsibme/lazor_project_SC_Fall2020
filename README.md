@@ -75,7 +75,7 @@ a different extension, you need to make the following adjustments
      + Input: Possble combinations of blocks, lazors, points of intersection  
      + Handles the functions for refract, reflect, hitting the block, moving lazor, position and lazor encounters
          
- * **Class Visulization**  
+ * **Class Visualization**  
     This class defines various operations for plotting the final solution for a given lazor test case  
     + Step 1: Creating a grid with blocks
     + Step 2: Assigning the colors as per the above color scheme
