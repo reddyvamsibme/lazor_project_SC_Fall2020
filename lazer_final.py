@@ -497,7 +497,7 @@ class Solution:
 
         # True if within the range
         return x >= 0 and x < xu and y >= 0 and y < yu
-        
+
     def move_lazor(self, lazer):
         '''
         This function represents the movement of lazor along its direction
