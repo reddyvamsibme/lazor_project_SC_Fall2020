@@ -8,6 +8,7 @@ Emad Mohammed Naveed <enaveed1@jhu.edu>
 # Import packages
 from itertools import combinations
 from PIL import Image, ImageDraw
+import time
 
 
 class Input:
@@ -399,9 +400,12 @@ class Lazor:
 
 class Solution:
     '''
-        This class has functions to solve the lazor puzzle based on
-        the generated combinations of blocks, lazors, points of intersection
-        Criteria: List of points of intersection is empty
+        This class has functions to solve the lazor puzzle
+        - Criteria: Lazer intersection with given points
+        - Input: Possble combinations of blocks, lazors, points of intersection
+        - Handles the functions for refract, reflect, hitting the block,
+          moving lazor, position and lazor encounters
+        - List of points of intersection is empty
 
     '''
 
@@ -615,8 +619,14 @@ class Solution:
 
 class Visualisation:
     '''
-        This class defines various operations for plotting
-        the final solution for a given lazor test case
+        This class defines various operations for plotting the final solution
+        for a given lazor test case
+
+        Step 1: Creating a grid with blocks
+        Step 2: Assigning the colors as per the above color scheme
+        Step 3: Retracing the lazor path
+        Step 4: Draw the grid lines, intersection points and lazer points
+        Step 5: Save the solution as .png file in the root file
     '''
 
     def __init__(self, filename, info, sel_comb):
@@ -651,91 +661,93 @@ class Visualisation:
             None
         '''
         # Intializing the grid size
+        if not self.sel_comb:
+            print("No solution is found for the given file")
+        else:
+            size = self.info['Size']
+            x_l = self.info['x_l']
+            blockSize = 100
+            # Grid dimensions
+            nBlocks1 = size[0]
+            nBlocks2 = size[1]
+            # Creating the grid
+            figure = [[0 for i in range(nBlocks1)] for j in range(nBlocks2)]
+            dims1 = nBlocks1 * blockSize
+            dims2 = nBlocks2 * blockSize
+            # Storing the defined colors
+            colors = self.get_colors()
 
-        size = self.info['Size']
-        x_l = self.info['x_l']
-        blockSize = 100
-        # Grid dimensions
-        nBlocks1 = size[0]
-        nBlocks2 = size[1]
-        # Creating the grid
-        figure = [[0 for i in range(nBlocks1)] for j in range(nBlocks2)]
-        dims1 = nBlocks1 * blockSize
-        dims2 = nBlocks2 * blockSize
-        # Storing the defined colors
-        colors = self.get_colors()
+            # For a given solution, plotting specific color blocks
+            for i in self.sel_comb:
+                name = self.sel_comb[i]
+                # Transforming the coordinate system
+                x = int(i[0])
+                y = int(size[1] - i[1] - 1)
+                if name == 'A':
+                    figure[y][x] = 1
+                elif name == 'B':
+                    figure[y][x] = 2
+                elif name == 'C':
+                    figure[y][x] = 3
+                else:
+                    figure[y][x] = 0
 
-        # For a given solution, plotting specific color blocks
-        for i in self.sel_comb:
-            name = self.sel_comb[i]
-            # Transforming the coordinate system
-            x = int(i[0])
-            y = int(size[1] - i[1] - 1)
-            if name == 'A':
-                figure[y][x] = 1
-            elif name == 'B':
-                figure[y][x] = 2
-            elif name == 'C':
-                figure[y][x] = 3
-            else:
-                figure[y][x] = 0
+            # Highlighting 'x' positions
+            for i in x_l:
+                x = int(i[0])
+                y = int(size[1] - i[1] - 1)
+                figure[y][x] = 4
 
-        # Highlighting 'x' positions
-        for i in x_l:
-            x = int(i[0])
-            y = int(size[1] - i[1] - 1)
-            figure[y][x] = 4
+            # Error if out of bounds
+            ERR_MSG = "Error, invalid grid value found!"
+            assert all([a in colors.keys()
+                        for row in figure for a in row]), ERR_MSG
 
-        # Error if out of bounds
-        ERR_MSG = "Error, invalid grid value found!"
-        assert all([a in colors.keys()
-                    for row in figure for a in row]), ERR_MSG
+            # Initializing an image with grid dimensions
+            img = Image.new("RGBA", (dims1, dims2), color=0)
 
-        # Initializing an image with grid dimensions
-        img = Image.new("RGBA", (dims1, dims2), color=0)
+            # Marking the blocks accordingly
+            for jx in range(nBlocks1):
+                for jy in range(nBlocks2):
+                    x = jx * blockSize
+                    y = jy * blockSize
+                    for i in range(blockSize):
+                        for j in range(blockSize):
+                            img.putpixel((x + i, y + j),
+                                         colors[figure[jy][jx]])
 
-        # Marking the blocks accordingly
-        for jx in range(nBlocks1):
-            for jy in range(nBlocks2):
-                x = jx * blockSize
-                y = jy * blockSize
-                for i in range(blockSize):
-                    for j in range(blockSize):
-                        img.putpixel((x + i, y + j), colors[figure[jy][jx]])
+            # Drawing grid lines to distinguish the output blocks
+            draw = ImageDraw.Draw(img)
+            step_size1 = int(dims1 / size[0])
+            step_size2 = int(dims2 / size[1])
+            y_start = 0
+            y_end = dims2
 
-        # Drawing grid lines to distinguish the output blocks
-        draw = ImageDraw.Draw(img)
-        step_size1 = int(dims1 / size[0])
-        step_size2 = int(dims2 / size[1])
-        y_start = 0
-        y_end = dims2
+            # Vertical Lines
+            for x in range(0, dims1, step_size1):
+                line = ((x, y_start), (x, y_end))
+                draw.line(line, fill=(0, 0, 0, 255))
+            x_start = 0
+            x_end = dims1
 
-        # Vertical Lines
-        for x in range(0, dims1, step_size1):
-            line = ((x, y_start), (x, y_end))
+            # Horizontal Lines
+            for y in range(0, dims2, step_size2):
+                line = ((x_start, y), (x_end, y))
+                draw.line(line, fill=(0, 0, 0, 255))
+            line = ((x_start, dims2 - 1), (x_end, dims2 - 1))
             draw.line(line, fill=(0, 0, 0, 255))
-        x_start = 0
-        x_end = dims1
-
-        # Horizontal Lines
-        for y in range(0, dims2, step_size2):
-            line = ((x_start, y), (x_end, y))
+            line = ((dims1 - 1, y_start), (dims1 - 1, y_end))
             draw.line(line, fill=(0, 0, 0, 255))
-        line = ((x_start, dims2 - 1), (x_end, dims2 - 1))
-        draw.line(line, fill=(0, 0, 0, 255))
-        line = ((dims1 - 1, y_start), (dims1 - 1, y_end))
-        draw.line(line, fill=(0, 0, 0, 255))
 
-        # Removing the draw tool
-        del draw
-        # Saving the file
-        if ".bff" in self.filename:
-            self.filename = self.filename.split(".bff")[0]
+            # Removing the draw tool
+            del draw
+            # Saving the file
+            if ".bff" in self.filename:
+                self.filename = self.filename.split(".bff")[0]
 
-        if not self.filename.endswith(".png"):
-            self.filename += ".png"
-        img.save("%s" % self.filename)
-        img.show()
+            if not self.filename.endswith(".png"):
+                self.filename += ".png"
+            img.save("%s" % self.filename)
 
     def get_colors(self):
         '''
@@ -764,11 +776,11 @@ class Visualisation:
 
 
 if __name__ == "__main__":
-    filename = ["yarn_5.bff", "tiny_5.bff", "showstopper_4.bff", "numbered_6.bff", "mad_1.bff", "mad_7.bff",
-                "mad_4.bff", "dark_1.bff"]
+    filename = ["yarn_5.bff", "tiny_5.bff", "numbered_6.bff",
+                "mad_1.bff", "mad_7.bff", "mad_4.bff", "dark_1.bff"]
     times = []
     # For loop for to run all the files at once
-    for item in filename
+    for item in filename:
         # filename = "mad_7.bff"
         # initializing times
         t0 = time.time()
@@ -776,7 +788,7 @@ if __name__ == "__main__":
         dataset1, dataset2 = file()
         comb = Lazor(dataset1, dataset2)
         sel_comb = comb()
-        result = Visualisation(filename, dataset2, sel_comb)
+        result = Visualisation(item, dataset2, sel_comb)
         result()
         # Time for each case
         t1 = time.time()
@@ -784,4 +796,3 @@ if __name__ == "__main__":
         times.append(time1)
     # crosschecking time
     print(times)
-
