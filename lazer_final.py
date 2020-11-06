@@ -524,3 +524,26 @@ class Solution:
         # If direction of y-comp is positive and y-coordinate is a whole number
         else:
             self.conditional(((self.x * 2 - 1) / 2, self.y), lazer)
+
+    def reflect(self, lazer):
+        '''
+        This function is executed if it encounters the A block
+        To validate the lazor touching the blocks:
+        Step 1: Check lazor direction
+        Step 2: Verify the touch (Lazor - block)
+        Step 3: If touch is on sides or top or bottom
+
+
+        **Input Parameters**
+            lazer: *List, int*
+                The list with lazor positions and directions
+        **Returns**
+            None
+        '''
+        x, y, vx, vy = lazer
+        # If x-coordinate is integer
+        if self.x.is_integer():
+            # Update position and run move_lazor() function
+            self.move_lazor((x - vx, y + vy, - vx, vy))
+        else:
+            self.move_lazor((x + vx, y - vy, vx, - vy))
