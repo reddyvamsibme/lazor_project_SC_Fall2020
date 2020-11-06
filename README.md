@@ -24,7 +24,7 @@ The code is documented in PEP8 style formatting with clear comments and designed
 ## Testfiles
 The code is exclusively programmed for reading '.bff' files as input and extracting the necessary information. 
 The directory [testfiles](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/tree/master/testfiles/) 
-in this repository has seven '.bff' files for getting trained. If you intend to use your own test file with
+in this repository has seven '.bff' files for getting trained. Make sure to copy the files from [testfiles](https://github.com/reddyvamsibme/lazor_project_SC_Fall2020/tree/master/testfiles/) to the main working directory before implementing the code. If you intend to use your own test file with
 a different extension, you need to make the following adjustments
    1. Comment the following code in call() method of Class Input:
    ```python
